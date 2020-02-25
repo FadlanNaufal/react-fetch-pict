@@ -1,13 +1,16 @@
 import React from 'react'
 
+
 export default class Searchbar extends React.Component {
 
     state = {
         term: ''
     }
 
-    onFormSubmit(e){
+    onFormSubmit = e =>{
         e.preventDefault()
+        console.log(this.state.term)
+        this.props.onSubmit(this.state.term)
     }
 
     render() {
@@ -16,6 +19,7 @@ export default class Searchbar extends React.Component {
                 <form onSubmit={this.onFormSubmit} className="ui form">
                     <div className="field">
                         <label>Image Search</label>
+                        <br/>
                         <input type="text" 
                         value={this.state.term}
                         onChange={e => {
@@ -24,6 +28,7 @@ export default class Searchbar extends React.Component {
                             })
                         }} />
                     </div>
+                    <p>Image Found : {this.props.images.length}</p>
                 </form>
             </div>
         )
